@@ -1,6 +1,6 @@
 {
     "name": "sae-aws-lambda",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Plugin to Sae.Js to Aws Lambda",
     "main": "src/index.js",
     "repository": {
@@ -20,6 +20,6 @@
     },
     "homepage": "https://github.com/saejs/sae-aws-lambda#readme",
     "dependencies": {
-        "aws-serverless-express": "^3.4.0"
+        "aws-serverless-express": "^1.3.0"
     }
 }
