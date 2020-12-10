@@ -1,0 +1,25 @@
+{
+    "name": "sae-aws-lambda",
+    "version": "0.0.1",
+    "description": "Plugin to Sae.Js to Aws Lambda",
+    "main": "src/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/saejs/sae-aws-lambda.git"
+    },
+    "keywords": [
+        "sae",
+        "aws",
+        "lambda",
+        "sae-aws-lambda"
+    ],
+    "author": "Bruno Gonçalves",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/saejs/sae-aws-lambda/issues"
+    },
+    "homepage": "https://github.com/saejs/sae-aws-lambda#readme",
+    "dependencies": {
+        "aws-serverless-express": "^3.4.0"
+    }
+}
