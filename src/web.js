@@ -1,24 +1,5 @@
-const awsServerlessExpress = require('aws-serverless-express');
-
-const binaryMimeTypes = [
-    'application/javascript',
-    'application/json',
-    'application/octet-stream',
-    'application/xml',
-    'font/eot',
-    'font/opentype',
-    'font/otf',
-    'image/jpeg',
-    'image/png',
-    'image/svg+xml',
-    'text/comma-separated-values',
-    'text/css',
-    'text/html',
-    'text/javascript',
-    'text/plain',
-    'text/text',
-    'text/xml'
-];
+const binaryMimeTypes = require('./webMimeTypes');
+const serverlessExpress = require('@vendia/serverless-express');
 
 /**
  * Criar server web para expor o app no lambda.
@@ -28,11 +9,11 @@ const binaryMimeTypes = [
  */
 const createServer = (app) => {
 
-    var server = awsServerlessExpress.createServer(app, null, binaryMimeTypes);
+    const server = serverlessExpress.createServer(app, null, binaryMimeTypes)
 
     return {
         proxy: (event, context) => {
-            return awsServerlessExpress.proxy(server, event, context);
+            return serverlessExpress.proxy(server, event, context);
         }
     };
 }
