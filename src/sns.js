@@ -65,9 +65,10 @@ const runMessageItem = async (app, msg) => {
         origem : 'sns',
         data,
         messageId,
+        topicArn
     };
 
-    await app.events.emit('command', cmd);
+    await app.events.emit('command.' + cmd.origem + '.' + cmd.id, cmd);
     
     return true;
 }
