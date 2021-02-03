@@ -25,7 +25,7 @@ const createServer = (app) => {
  * @param {Object} context Objeto contexto da função do lambda
  * @returns {Boolean}
  */
-const isEventWeb = (event, context) => {
+const isEvent = (event, context) => {
     if (!(typeof event == 'object')) {
         return false;
     }
@@ -42,5 +42,5 @@ const isEventWeb = (event, context) => {
  */
 module.exports = {
     createServer,
-    isEventWeb
+    isEvent
 };
