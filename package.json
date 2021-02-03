@@ -1,6 +1,6 @@
 {
     "name": "sae-aws-lambda",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Plugin to Sae.Js to Aws Lambda",
     "main": "src/index.js",
     "repository": {

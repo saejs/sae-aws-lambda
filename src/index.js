@@ -7,13 +7,13 @@ var serverWeb = null;
 
 /**
  * Prepara e exporta um aplicativo rhinoJs para ser utilizaod no AWS Lambda.
- * Cmo Web, Queues, Cron, Invoke
+ * Cmo Web, SNS, SQS, CRON e Invoke
  */
 module.exports = function (app) {
 
     // Verificar se deve criar webserver
     if (!((process.env.WEB_SERVER == false) || (process.env.WEB_SERVER == 'false'))) {
-        serverWeb = web.createServer(app);
+        serverWeb = web.createServer(app.$route);
     }
 
     return function (event, context) {
