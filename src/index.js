@@ -1,5 +1,6 @@
 const web = require('./web');
 const sns = require('./sns');
+const s3  = require('./s3');
 //const { queueRunMessages, isEventQueue } = require('./queue');
 //const { cronRunJon, isEventCron } = require('./cron');
 
@@ -27,6 +28,12 @@ module.exports = function (app) {
         //-------------------------------------------------------------
         if (sns.isEvent(event, context)) {
             return sns.runMessages(app, event, context);
+        }
+
+        // Verificar se eh S3
+        //-------------------------------------------------------------
+        if (s3.isEvent(event, context)) {
+            return s3.runMessages(app, event, context);
         }
 
         // Verificar se eh queue

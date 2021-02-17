@@ -1,5 +1,5 @@
 /**
- * Verificar se o evento do lambda é um solicição SNS.
+ * Verificar se o evento do lambda é um solicição S3.
  * 
  * @param {Object} event Evento do gatilho do lambda
  * @param {Object} context Objeto contexto da função do lambda
@@ -18,7 +18,7 @@ const isEvent = (event, context) => {
         return false;
     }
 
-    if ((event.Records.length > 0) && (event.Records[0].EventSource == 'aws:sns')) {
+    if ((event.Records.length > 0) && (event.Records[0].EventSource == 'aws:s3')) {
         return true;
     }
 
@@ -54,21 +54,22 @@ const runMessages = async (app, event, context) => {
 const runMessageItem = async (app, msg) => {
 
     // Tratar parametros
-    var messageId     = msg.Sns.MessageId;
-    var topicArn      = msg.Sns.TopicArn;
-    var topicArnParts = topicArn.split(':');
-    var data          = JSON.parse(msg.Sns.Message);
+    var bucket        = msg.s3.bucket;
+    var object        = msg.s3.object;
+    var eventName     = msg.eventName;
+    var awsRegion     = msg.awsRegion;
 
     // Montar objeto do comando
     var cmd = {
-        origem : 'sns',
-        id     : topicArnParts[topicArnParts.length-1],
-        data,
-        messageId,
-        topicArn
+        origem : 's3',
+        bucket,
+        object,
+        eventName,
+        awsRegion,
+        source: msg
     };
 
-    await app.events.emit('command.' + cmd.origem + '.' + cmd.id, cmd);
+    await app.events.emit('command.' + cmd.origem);
     
     return true;
 }
