@@ -69,7 +69,7 @@ const runMessageItem = async (app, msg) => {
         source: msg
     };
 
-    await app.events.emit('command.' + cmd.origem);
+    await app.events.emit('command.' + cmd.origem, cmd);
     
     return true;
 }
