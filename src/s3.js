@@ -18,7 +18,7 @@ const isEvent = (event, context) => {
         return false;
     }
 
-    if ((event.Records.length > 0) && (event.Records[0].EventSource == 'aws:s3')) {
+    if ((event.Records.length > 0) && (event.Records[0].eventSource == 'aws:s3')) {
         return true;
     }
 
