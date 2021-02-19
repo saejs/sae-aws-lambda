@@ -18,6 +18,9 @@ module.exports = function (app) {
     }
 
     return function (event, context) {
+
+        console.log('SAE.EVENTO', event);
+
         // Verificar se eh web
         //-------------------------------------------------------------
         if (web.isEvent(event, context)) {
