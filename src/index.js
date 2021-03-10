@@ -1,7 +1,7 @@
 const web = require('./web');
 const sns = require('./sns');
+const sqs = require('./sqs');
 const s3  = require('./s3');
-//const { queueRunMessages, isEventQueue } = require('./queue');
 //const { cronRunJon, isEventCron } = require('./cron');
 
 var serverWeb = null;
@@ -19,7 +19,9 @@ module.exports = function (app) {
 
     return function (event, context) {
 
-        console.log('SAE.EVENTO', event);
+        if (process.env.LOG_DEBUG) {
+            console.log('SAE.EVENTO', JSON.stringify(event));
+        }
 
         // Verificar se eh web
         //-------------------------------------------------------------
@@ -39,11 +41,11 @@ module.exports = function (app) {
             return s3.runMessages(app, event, context);
         }
 
-        // Verificar se eh queue
+        // Verificar se eh SQS
         //-------------------------------------------------------------
-        //if (isEventQueue(event, context)) {
-        //    return queueRunMessages(app.jobs(), event, context);
-        //}
+        if (sqs.isEvent(event, context)) {
+            return sqs.runMessages(app, event, context);
+        }
         
         // Verificar se eh cron
         //-------------------------------------------------------------
