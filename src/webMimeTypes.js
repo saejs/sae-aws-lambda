@@ -3,6 +3,7 @@ module.exports = [
     'application/json',
     'application/octet-stream',
     'application/xml',
+    'application/pdf',
     'font/eot',
     'font/opentype',
     'font/otf',
